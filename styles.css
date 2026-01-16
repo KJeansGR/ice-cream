@@ -1,0 +1,50 @@
+:root{
+    --green-col: lime;
+    --text-col: rgba(0, 0, 0, 0.75);
+}
+html{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: aliceblue;
+    justify-items: center;
+    box-sizing: border-box;
+}
+main * {
+    border-radius: .25rem;
+    margin: .25rem 0;
+    color: var(--text-col);
+}
+legend{
+    text-align: center;
+    color: var(--green-col);
+}
+form{
+    background-color: rgba(245, 245, 245, 0.801);
+    padding: 1rem;
+    box-shadow: -.125rem .125rem 1rem rgba(0, 0, 0, 0.125);
+}
+h1{
+    font-family: cursive;
+    justify-self: center;
+    margin-top: 0rem;
+}
+#personal-info{
+    justify-items: space-evenly;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+#order-details{
+    display: flex;
+    flex-direction: column;
+}
+button{
+    width: 100%;
+
+    border: none;
+    color: whitesmoke;
+    background-color: var(--green-col);
+}
+select{
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    width: 100%;
+}
