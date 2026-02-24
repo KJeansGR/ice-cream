@@ -5,7 +5,7 @@ import express from 'express';
 const app = express();
 
 //define aport number where the servervwill listen
-const PORT = 3000;
+const PORT = 3002;
 
 //set ejs as view engine
 app.set('view engine', 'ejs');
