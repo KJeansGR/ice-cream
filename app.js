@@ -26,11 +26,10 @@ app.post('/submit-order', (req,res)=>{
 
     //store data
     const order ={
-        // FirstName: req.body.fname,
-        // LastName: req.body.lname,
-        // email: req.body.email,
-        // DeliveryMethod: req.body.method,
-        // Toppings: req.body.toppings || "none",
+        FirstName: req.body.name,
+        email: req.body.email,
+        flavor: req.body.flavor,
+        cone: req.body.cone || "none",
         // PizzaSize:  req.body.size,
         // ExtraInstructions: req.body.comment,
         // timestamp : new Date().toLocaleString()
