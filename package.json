@@ -2,12 +2,10 @@
   "dependencies": {
     "ejs": "^4.0.1",
     "express": "^5.2.1",
-    "nodemon": "^3.1.14",
-    "type": "module"
+    "nodemon": "^3.1.14"
   },
   "name": "ice-cream",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "devDependencies": {},
   "scripts": {
@@ -20,9 +18,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/KJeansGR/ice-cream/issues"
   },
-  "homepage": "https://github.com/KJeansGR/ice-cream#readme"
+  "homepage": "https://github.com/KJeansGR/ice-cream#readme",
+  "description": ""
 }
