@@ -3,62 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="StyleSheet" href="/styles/styles.css">
+    <link rel="StyleSheet" href="/styles/confirmStyles.css">
     <link rel="icon" href="/images/ice-cream-favicon.png">
     <title>Order Placed</title>
 </head>
 <body>
-    <Header>
+    <header>
+        <img src="/images/check.png" alt="check mark">
         <h1>Thank You For Your Order</h1>
         <span>Your ice cream order has been confirmed</span>
-    </Header>
+    </header>
     <main>
-        <h2>Personal Information</h2>
-        <div id="pi-name">
-            <span >Name:</span>
-            <span ><%= order.Customer %></span>
-        </div>
-        <div id="pi-email">
-            <span >Email:</span>
-            <span ><%= order.Email %></span>
-        </div>
+        <section id="pi-section">
+            <h2>Personal Information</h2>
+            <div id="pi-name">
+                <span><strong>Name:</strong></span>
+                <span ><%= order.Customer %></span>
+            </div>
+            <div id="pi-email">
+                <span><strong>Email: </strong></span>
+                <span ><%= order.Email %></span>
+            </div>
+        </section>
 
-        <h2>Order Details</h2>
-        <div id="pi-flavor">
-            <span>Flavor:</span>
-            <span ><%= order.Flavor %></span>
-        </div>
-        <div id="pi-cone">
-            <span>Cone:</span>
-            <span ><%= order.Cone %></span>
-        </div>
-        <div id="pi-toppings">
-            <span>Toppings:</span>
-            <!-- this makes sure that toppings exist-->
-                <span>
-                    <% if(order.Toppings) { %>
+        <section id="od-section">
+            <h2>Order Details</h2>
+            <div id="od-flavor">
+                <span><strong>Flavor:</strong></span>
+                <span ><%= order.Flavor %></span>
+            </div>
+            <div id="od-cone">
+                <span><strong>Cone:</strong></span>
+                <span ><%= order.Cone %></span>
+            </div>
+            <div id="od-toppings">
+                <span><strong>Toppings</strong></span>
+                <!-- this makes sure that toppings exist-->
+                    <span>
+                        <% if(order.Toppings) { %>
 
-                    <% order.Toppings.forEach(t =>{ %>
-                    <span id="pi-topping-bubble"><%= t %></span>
-                    <% })
-                    
-                    } else { %>
-                        <span id="pi-topping-bubble">none</span>
-                    <% }%>
+                        <% order.Toppings.forEach(t =>{ %>
+                        <span id="pi-topping-bubble"><%= t %></span>
+                        <% })
+                        
+                        } else { %>
+                            <span id="pi-topping-bubble">none</span>
+                        <% }%>
+                    </span>
                 </span>
-            </span>
-        </div>
-        
-        <h2>Additional Comments</h2>
-        <div id="pi-comments">
-            <p>
-                <%= order.AdditionalComments %>
-            </p>
-        </div>
+            </div>
+        </section>
 
-        <nav id="pi-nav-btns">
+        <section id="ac-section">
+            <h2>Additional Comments</h2>
+            <div id="ac-comments">
+                <p>
+                    <%= order.AdditionalComments %>
+                </p>
+            </div>
+        </section>
 
-            <button>Print Order</button>
+        <nav id="confirm-nav-btns">
+            <a href="/">
+                <button>Print Order</button>
+            </a>
             <a href="/">
                 <button type="button" id="place-another-order-btn">Place Another Order</button>
             </a>

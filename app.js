@@ -23,24 +23,20 @@ app.get('/', (req,res)=>{
 
 //Thankyou for order
 app.post('/submit-order', (req,res)=>{
-
-    /*
-                <th> Time</th>
-                <th> Customer</th>
-                <th> Email</th>
-                <th>Flavor</th>
-                <th>Cone</th>
-                <th>Toppings</th>
-    */
-    //store data
     const order ={
-        Time: new Date().toLocaleString(),
+        Time: new Date().toLocaleString('en-US', 
+        {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+         }),
         Customer: req.body.name,
         Email: req.body.email,
         Flavor: req.body.flavor,
         Cone: req.body.cone || "none",
         Toppings: req.body.toppings,
-        //AdditionalComments: req.body.comments
+        AdditionalComments: req.body.comments
     };
 
     orders.push(order);

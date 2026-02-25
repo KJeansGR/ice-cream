@@ -50,3 +50,6 @@ select{
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     width: 100%;
 }
+header {
+    text-align: center;
+}

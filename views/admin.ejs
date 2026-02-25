@@ -13,6 +13,7 @@
 <body>
     
    <table id="order-table" class="display">
+    
         <thead>
             <tr>
                 <th> Time</th>
@@ -23,11 +24,16 @@
                 <th>Toppings</th>   
             </tr>
         </thead>
-        <% orders.forEach(order => {%>
+
+        <!-- this loop will populate the table rows with the sppropriate fields, 
+         and it will skip the comments section if one is included in the object because 
+         comments are not a necessary table value-->
+        <% orders.forEach(order => { %>
             <tr>
-            <% Object.entries(order).forEach(o => {%>
-            <td><%= o[1] %></td>
-           <% })%>               
+                <% Object.entries(order).forEach(o => { %>
+                    <%if(o[0] != "AdditionalComments") {%>
+                    <td><%= o[1] %></td>
+                <% }})%>               
             </tr>
         <% })%>
    </table>
