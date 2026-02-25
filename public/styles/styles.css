@@ -39,10 +39,12 @@ h1{
 }
 button{
     width: 100%;
-
     border: none;
     color: whitesmoke;
     background-color: var(--green-col);
+}
+button:hover{
+    opacity: 50%;
 }
 select{
     font-size: clamp(1rem, 1.5vw, 1.5rem);

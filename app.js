@@ -26,24 +26,22 @@ app.post('/submit-order', (req,res)=>{
 
     //store data
     const order ={
-        FirstName: req.body.name,
-        email: req.body.email,
-        flavor: req.body.flavor,
-        cone: req.body.cone || "none",
-        // PizzaSize:  req.body.size,
-        // ExtraInstructions: req.body.comment,
-        // timestamp : new Date().toLocaleString()
+        Name: req.body.name,
+        Email: req.body.email,
+        Flavor: req.body.flavor,
+        Cone: req.body.cone || "none",
+        Toppings: req.body.toppings,
+        AdditionalComments: req.body.comments
     };
 
     orders.push(order);
-    //res.send(orders); // displays the json of orders array
     res.render(`confirmation`, {order});
-    //res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
-});
+})
 
 //admin route
 app.get('/admin', (req, res)=>{
-    res.render(`admin`, {orders});
+   res.send(orders);
+    // res.render(`admin`, {orders});
 })
 
 //Thankyou for order

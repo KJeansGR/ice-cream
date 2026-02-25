@@ -6,6 +6,50 @@
     <title>Document</title>
 </head>
 <body>
+    <Header>
+        <h1>Thank You For Your Order</h1>
+        <span>Your ice cream order has been confirmed</span>
+    </Header>
+    <main>
+        <h2>Personal Information</h2>
+        <div id="pi-name">
+            <span >Name:</span>
+            <span ><%= order.Name %></span>
+        </div>
+        <div id="pi-email">
+            <span >Email:</span>
+            <span ><%= order.Email %></span>
+        </div>
+
+        <h2>Order Details</h2>
+        <div id="pi-flavor">
+            <span>Flavor:</span>
+            <span ><%= order.Flavor %></span>
+        </div>
+        <div id="pi-cone">
+            <span>Cone:</span>
+            <span ><%= order.Cone %></span>
+        </div>
+        <div id="pi-toppings">
+            <span>Toppings:</span>
+            <span ><% order.Toppings.forEach(t =>{ %>
+            <span id="pi-topping-bubble"> <%= t %> </span>
+            <%}) %></span>
+        </div>
+        
+        <h2>Additional Comments</h2>
+        <div id="pi-comments">
+            <p>
+                <%= order.AdditionalComments %>
+            </p>
+        </div>
+
+        <nav id="pi-nav-btns">
+            <button>Print Order</button>
+            <button>Place Another Order</button>
+        </nav>
+    </main>
     
+
 </body>
 </html>
