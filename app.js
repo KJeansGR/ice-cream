@@ -24,14 +24,23 @@ app.get('/', (req,res)=>{
 //Thankyou for order
 app.post('/submit-order', (req,res)=>{
 
+    /*
+                <th> Time</th>
+                <th> Customer</th>
+                <th> Email</th>
+                <th>Flavor</th>
+                <th>Cone</th>
+                <th>Toppings</th>
+    */
     //store data
     const order ={
-        Name: req.body.name,
+        Time: new Date().toLocaleString(),
+        Customer: req.body.name,
         Email: req.body.email,
         Flavor: req.body.flavor,
         Cone: req.body.cone || "none",
         Toppings: req.body.toppings,
-        AdditionalComments: req.body.comments
+        //AdditionalComments: req.body.comments
     };
 
     orders.push(order);
@@ -40,8 +49,8 @@ app.post('/submit-order', (req,res)=>{
 
 //admin route
 app.get('/admin', (req, res)=>{
-   res.send(orders);
-    // res.render(`admin`, {orders});
+    //res.send(orders);
+    res.render(`admin`, {orders});
 })
 
 //Thankyou for order

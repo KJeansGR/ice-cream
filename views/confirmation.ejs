@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="StyleSheet" href="/styles/styles.css">
+    <link rel="icon" href="/images/ice-cream-favicon.png">
+    <title>Order Placed</title>
 </head>
 <body>
     <Header>
@@ -14,7 +16,7 @@
         <h2>Personal Information</h2>
         <div id="pi-name">
             <span >Name:</span>
-            <span ><%= order.Name %></span>
+            <span ><%= order.Customer %></span>
         </div>
         <div id="pi-email">
             <span >Email:</span>
@@ -32,9 +34,19 @@
         </div>
         <div id="pi-toppings">
             <span>Toppings:</span>
-            <span ><% order.Toppings.forEach(t =>{ %>
-            <span id="pi-topping-bubble"> <%= t %> </span>
-            <%}) %></span>
+            <!-- this makes sure that toppings exist-->
+                <span>
+                    <% if(order.Toppings) { %>
+
+                    <% order.Toppings.forEach(t =>{ %>
+                    <span id="pi-topping-bubble"><%= t %></span>
+                    <% })
+                    
+                    } else { %>
+                        <span id="pi-topping-bubble">none</span>
+                    <% }%>
+                </span>
+            </span>
         </div>
         
         <h2>Additional Comments</h2>
@@ -45,11 +57,12 @@
         </div>
 
         <nav id="pi-nav-btns">
+
             <button>Print Order</button>
-            <button>Place Another Order</button>
+            <a href="/">
+                <button type="button" id="place-another-order-btn">Place Another Order</button>
+            </a>
         </nav>
     </main>
-    
-
 </body>
 </html>
