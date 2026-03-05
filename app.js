@@ -15,6 +15,16 @@ const PORT = 3002;
 //set ejs as view engine
 app.set('view engine', 'ejs');
 
+//create a pool of database connections
+const pool = mysql2.createPool({
+    host: process.env.DB_HOST,
+    user:  process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database:  process.env.DB_NAME,
+    port:  process.env.DB_PORT
+
+}).promise();
+
 //MiddleWare that allows express to read form data and store it in req.body
 app.use(express.urlencoded({extended: true}))
 //create temp array to store orders
@@ -25,6 +35,32 @@ app.get('/', (req,res)=>{
 
     res.render(`home`);
 });
+
+
+// Database test route (for debugging)
+app.get('/db-test', async (req, res) => {
+
+
+    try {
+
+
+  const orders = await pool.query('SELECT * FROM orders');
+
+       res.send(orders[0]);
+
+
+    } catch (err) {
+
+
+       console.error('Database error:', err);
+
+       res.status(500).send('Database error: ' + err.message);
+
+    }
+
+});
+
+
 
 //Thankyou for order
 app.post('/submit-order', (req,res)=>{
