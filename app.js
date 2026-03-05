@@ -1,5 +1,10 @@
 //import express module // this is why you add "type: module"
 import express from 'express';
+import mysql2 from 'mysql2';
+import dotenv from 'dotenv';
+
+//load environment variables
+dotenv.config();
 
 //create an express application
 const app = express();
