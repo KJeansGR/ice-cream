@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 //define aport number where the servervwill listen
-const PORT = 3002;
+const PORT = 3015;
 
 //set ejs as view engine
 app.set('view engine', 'ejs');
