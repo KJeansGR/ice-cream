@@ -65,13 +65,13 @@ app.get('/db-test', async (req, res) => {
 //Thankyou for order
 app.post('/submit-order', (req,res)=>{
     const order ={
-        Time: new Date().toLocaleString('en-US', 
-        {
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit',
-         }),
+        // Time: new Date().toLocaleString('en-US', 
+        // {
+        //     month: 'short',
+        //     day: 'numeric',
+        //     hour: 'numeric',
+        //     minute: '2-digit',
+        //  }),
         Customer: req.body.name,
         Email: req.body.email,
         Flavor: req.body.flavor,
@@ -84,11 +84,29 @@ app.post('/submit-order', (req,res)=>{
     res.render(`confirmation`, {order});
 })
 
-//admin route
-app.get('/admin', (req, res)=>{
-    //res.send(orders);
-    res.render(`admin`, {orders});
-})
+
+// Display all orders
+
+app.get('/admin', async (req, res) => {
+
+
+    try {
+        // Fetch all orders from database, newest first
+        const [orders] = await pool.query('SELECT * FROM orders ORDER BY timestamp DESC');  
+        // Render the admin page
+        res.render('admin', { orders });        
+    }
+    catch (err) {
+        console.error('Database error:', err);
+        res.status(500).send('Error loading orders: ' + err.message);
+    }
+});
+
+// //admin route
+// app.get('/admin', (req, res)=>{
+//     //res.send(orders);
+//     res.render(`admin`, {orders});
+// })
 
 //Thankyou for order
 app.get('/thank-you', (req,res)=>{
