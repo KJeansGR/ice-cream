@@ -39,57 +39,54 @@ app.get('/', (req,res)=>{
 
 // Database test route (for debugging)
 app.get('/db-test', async (req, res) => {
-
-
     try {
-
-
-  const orders = await pool.query('SELECT * FROM orders');
-
-       res.send(orders[0]);
-
+        const orders = await pool.query('SELECT * FROM orders');
+        res.send(orders[0]);
 
     } catch (err) {
-
-
+        
        console.error('Database error:', err);
-
        res.status(500).send('Database error: ' + err.message);
-
     }
-
 });
 
 
 
 //Thankyou for order
-app.post('/submit-order', (req,res)=>{
-    const order ={
-        // Time: new Date().toLocaleString('en-US', 
-        // {
-        //     month: 'short',
-        //     day: 'numeric',
-        //     hour: 'numeric',
-        //     minute: '2-digit',
-        //  }),
-        Customer: req.body.name,
-        Email: req.body.email,
-        Flavor: req.body.flavor,
-        Cone: req.body.cone || "none",
-        Toppings: req.body.toppings,
-        AdditionalComments: req.body.comments
-    };
+app.post('/submit-order', async(req,res)=>{
 
-    orders.push(order);
+    try {
+    const order = req.body;
+    console.log('New order submitted:', order);
+
+    // SQL INSERT query with placeholders to prevent SQL injection
+    const sql = `INSERT INTO orders(customer, email, flavor, cone, toppings) 
+                VALUES (?, ?, ?, ?, ?);`;
+    const params = 
+    [
+        req.body.name,
+        req.body.email,
+        req.body.flavor,
+        req.body.cone || "none",
+        Array.isArray(req.body.toppings) ? 
+        req.body.toppings.join(", ") : ""
+    ];
+
+    const result = await pool.execute(sql, params);
+
+    console.log('Order saved with ID:', result[0].insertId);
+    console.log('New order submitted:', order);
+    // orders.push(order);
     res.render(`confirmation`, {order});
+
+    } catch (err) {
+        console.error('Error saving order:', err);
+        res.status(500).send('Sorry, there was an error processing your order. Please try again.');
+    }
 })
 
-
 // Display all orders
-
 app.get('/admin', async (req, res) => {
-
-
     try {
         // Fetch all orders from database, newest first
         const [orders] = await pool.query('SELECT * FROM orders ORDER BY timestamp DESC');  
@@ -101,12 +98,6 @@ app.get('/admin', async (req, res) => {
         res.status(500).send('Error loading orders: ' + err.message);
     }
 });
-
-// //admin route
-// app.get('/admin', (req, res)=>{
-//     //res.send(orders);
-//     res.render(`admin`, {orders});
-// })
 
 //Thankyou for order
 app.get('/thank-you', (req,res)=>{
