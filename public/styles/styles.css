@@ -53,3 +53,8 @@ select{
 header {
     text-align: center;
 }
+
+.err{
+    display: none;
+    color: darkred;
+}

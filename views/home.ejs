@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/form.js" defer></script>
     <link rel="StyleSheet" href="/styles/styles.css">
     <link rel="icon" href="/images/ice-cream-favicon.png">
     <title>Ice Cream Shop</title>
@@ -14,8 +15,11 @@
             <h1>Ice Cream Order Form</h1>
 
             <fieldset id="personal-info"><legend>Personal information</legend>
+                <span class="err" id="err-name">Name required</span>
                 <label for="name">Name: </label>
                 <input type="text" name="name" id="name">
+                
+                <span class="err" id="err-email">Email required</span>
                 <label for="email">Email: </label>
                 <input type="email" name="email" id="email">
             </fieldset>
@@ -34,6 +38,7 @@
                 <br>
                 
                 <div id="cone-section">
+                    <span class="err" id="err-cone"> SELECT A CONE</span>
                     <label>Choose your cone:</label>
                     <br>
                     <input type = "radio" id = "waffle" value = "waffle" name = "cone">

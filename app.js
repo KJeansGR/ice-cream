@@ -69,7 +69,7 @@ app.post('/submit-order', async(req,res)=>{
         req.body.flavor,
         req.body.cone || "none",
         Array.isArray(req.body.toppings) ? 
-        req.body.toppings.join(", ") : ""
+        req.body.toppings.join(", ") : "",
     ];
 
     const result = await pool.execute(sql, params);

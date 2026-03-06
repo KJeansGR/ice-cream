@@ -18,11 +18,11 @@
             <h2>Personal Information</h2>
             <div id="pi-name">
                 <span><strong>Name:</strong></span>
-                <span ><%= order.Customer %></span>
+                <span ><%= order.name %></span>
             </div>
             <div id="pi-email">
                 <span><strong>Email: </strong></span>
-                <span ><%= order.Email %></span>
+                <span ><%= order.email %></span>
             </div>
         </section>
 
@@ -30,19 +30,19 @@
             <h2>Order Details</h2>
             <div id="od-flavor">
                 <span><strong>Flavor:</strong></span>
-                <span ><%= order.Flavor %></span>
+                <span ><%= order.flavor %></span>
             </div>
             <div id="od-cone">
                 <span><strong>Cone:</strong></span>
-                <span ><%= order.Cone %></span>
+                <span ><%= order.cone %></span>
             </div>
             <div id="od-toppings">
                 <span><strong>Toppings</strong></span>
                 <!-- this makes sure that toppings exist-->
                     <span>
-                        <% if(order.Toppings) { %>
+                        <% if(order.toppings) { %>
 
-                        <% order.Toppings.forEach(t =>{ %>
+                        <% order.toppings.forEach(t =>{ %>
                         <span id="pi-topping-bubble"><%= t %></span>
                         <% })
                         
@@ -58,15 +58,15 @@
             <h2>Additional Comments</h2>
             <div id="ac-comments">
                 <p>
-                    <%= order.AdditionalComments %>
+                    <%= order.comments %>
                 </p>
             </div>
         </section>
 
         <nav id="confirm-nav-btns">
-            <a href="/">
+            <!--<a href="/">
                 <button>Print Order</button>
-            </a>
+            </a> --->
             <a href="/">
                 <button type="button" id="place-another-order-btn">Place Another Order</button>
             </a>
